@@ -4,7 +4,6 @@ function getIndexOfWarmestDay(array $data)
 {
     $index = null;
 
-
     if (!empty($data)) {
         $max_temperature = $data[0][0];
 
