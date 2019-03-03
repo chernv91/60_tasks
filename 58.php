@@ -10,7 +10,6 @@ function rrmdir(string $dir_name): bool
         $full_path = __DIR__ . "/$dir_name";
     }
 
-
     if (file_exists($full_path)) {
 
         $files = scandir($full_path, SCANDIR_SORT_ASCENDING);
