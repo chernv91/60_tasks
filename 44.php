@@ -1,8 +1,7 @@
 <?php
 
-function performQueries(): array
+function performQueries()
 {
-    $users = [];
     $mysqli = new mysqli('localhost', 'root', 'password', 'db');
 
     $sql1 = <<<SQL
@@ -37,8 +36,6 @@ ORDER BY first_name
 LIMIT 3
 SQL;
 
-    $users = $mysqli->query($sql4);
-
     try {
         if (!$mysqli->query($sql1)) {
             throw new Exception($mysqli->error);
@@ -49,14 +46,19 @@ SQL;
         if (!$mysqli->query($sql3)) {
             throw new Exception($mysqli->error);
         }
-        if (!$users) {
+        if (!$mysqli->query($sql4)) {
             throw new Exception($mysqli->error);
         }
     } catch (Exception $e) {
         echo $e->getMessage() . "\n";
     }
 
-    $users = $users->fetch_all(MYSQLI_ASSOC);
+    $users = $mysqli->query($sql4);
+
+    if ($users !== false) {
+        $users = $users->fetch_all(MYSQLI_ASSOC);
+    }
+
     return $users;
 }
 
