@@ -11,11 +11,11 @@ SQL;
     $sql2 = <<<SQL
 CREATE TABLE users
 (
-  first_name varchar(255),
-  email      varchar(255),
-  house      varchar(255),
-  birthday   timestamp,
-  created_at timestamp default current_timestamp
+  first_name VARCHAR(255),
+  email      VARCHAR(255),
+  house      VARCHAR(255),
+  birthday   TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 SQL;
 
@@ -33,7 +33,7 @@ SQL;
     $sql4 = <<<SQL
 SELECT first_name, email, house, birthday, created_at
 FROM users
-where created_at between '2018-11-23' and '2018-12-12'
+WHERE created_at BETWEEN '2018-11-23' AND '2018-12-12'
    OR house = 'stark'
 ORDER BY created_at DESC
 SQL;

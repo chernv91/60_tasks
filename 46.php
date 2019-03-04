@@ -12,9 +12,9 @@ SQL;
     $sql2 = <<<SQL
 CREATE TABLE article_categories
 (
-  id   int auto_increment,
-  name varchar(255),
-  primary key (id)
+  id   INT AUTO_INCREMENT,
+  name VARCHAR(255),
+  PRIMARY KEY (id)
 );
 SQL;
 

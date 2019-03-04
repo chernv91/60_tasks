@@ -12,12 +12,12 @@ SQL;
     $sql2 = <<<SQL
 CREATE TABLE users
 (
-  id         int auto_increment,
-  username   varchar(255) NOT NULL,
-  email      varchar(255) NOT NULL,
-  created_at timestamp    NOT NULL,
-  primary key (id),
-  unique (username)
+  id         INT AUTO_INCREMENT,
+  username   VARCHAR(255) NOT NULL,
+  email      VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP    NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE (username)
 );
 SQL;
 
@@ -28,11 +28,11 @@ SQL;
     $sql4 = <<<SQL
 CREATE TABLE topics
 (
-  id         int auto_increment,
-  user_id    int,
-  body       varchar(255) NOT NULL,
-  created_at timestamp    NOT NULL,
-  primary key (id),
+  id         INT AUTO_INCREMENT,
+  user_id    INT,
+  body       VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP    NOT NULL,
+  PRIMARY KEY (id),
   FOREIGN KEY (user_id) REFERENCES users (id)
 );
 SQL;

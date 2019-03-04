@@ -12,10 +12,10 @@ SQL;
     $sql2 = <<<SQL
 CREATE TABLE users
 (
-  id    bigint PRIMARY KEY AUTO_INCREMENT,
-  email varchar(255) NOT NULL,
-  age   integer,
-  name  varchar(255)
+  id    BIGINT PRIMARY KEY AUTO_INCREMENT,
+  email VARCHAR(255) NOT NULL,
+  age   INTEGER,
+  name  VARCHAR(255)
 );
 SQL;
 
@@ -25,11 +25,11 @@ VALUES ('noc@mail.com', 44, 'mike');
 SQL;
 
     $sql4 = <<<SQL
-ALTER table users
+ALTER TABLE users
   DROP COLUMN age,
   ADD UNIQUE (email),
   ADD created_at TIMESTAMP,
-  CHANGE COLUMN `name` `first_name` varchar(255) NOT NULL 
+  CHANGE COLUMN `name` `first_name` VARCHAR(255) NOT NULL 
 SQL;
 
     $queries = [$sql1, $sql2, $sql3, $sql4];
