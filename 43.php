@@ -41,28 +41,21 @@ SET manager = true
 WHERE email = 'tirion@got.com'
 SQL;
 
-    try {
-        if (!$mysqli->query($sql1)) {
-            throw new Exception($mysqli->error);
+    $queries = [$sql1, $sql2, $sql3, $sql4, $sql5, $sql6];
+
+    foreach ($queries as $query) {
+
+        try {
+
+            if (!$mysqli->query($query)) {
+                throw new Exception($mysqli->error);
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage() . "\n";
+            $result = false;
         }
-        if (!$mysqli->query($sql2)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql3)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql4)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql5)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql6)) {
-            throw new Exception($mysqli->error);
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage() . "\n";
-        $result = false;
+
     }
 
     return $result;

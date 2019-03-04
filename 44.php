@@ -36,21 +36,20 @@ ORDER BY first_name
 LIMIT 3
 SQL;
 
-    try {
-        if (!$mysqli->query($sql1)) {
-            throw new Exception($mysqli->error);
+    $queries = [$sql1, $sql2, $sql3, $sql4];
+
+    foreach ($queries as $query) {
+
+        try {
+
+            if (!$mysqli->query($query)) {
+                throw new Exception($mysqli->error);
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage() . "\n";
         }
-        if (!$mysqli->query($sql2)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql3)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql4)) {
-            throw new Exception($mysqli->error);
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage() . "\n";
+
     }
 
     $users = $mysqli->query($sql4);

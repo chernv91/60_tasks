@@ -6,7 +6,11 @@ function createTable(): bool
     $mysqli = new mysqli('localhost', 'root', 'password', 'db');
 
     $sql1 = <<<SQL
-CREATE table IF NOT EXISTS courses
+DROP TABLE IF EXISTS  courses
+SQL;
+
+    $sql2 = <<<SQL
+CREATE table courses
 (
   name       VARCHAR(255),
   body       TEXT,
@@ -14,8 +18,12 @@ CREATE table IF NOT EXISTS courses
 )
 SQL;
 
-    $sql2 = <<<SQL
-CREATE table IF NOT EXISTS  users
+    $sql3 = <<<SQL
+DROP TABLE IF EXISTS  users
+SQL;
+
+    $sql4 = <<<SQL
+CREATE table users
 (
   first_name VARCHAR(255),
   email      VARCHAR(255),
@@ -23,8 +31,12 @@ CREATE table IF NOT EXISTS  users
 )
 SQL;
 
-    $sql3 = <<<SQL
-CREATE table IF NOT EXISTS  course_members
+    $sql5 = <<<SQL
+DROP TABLE IF EXISTS  course_members
+SQL;
+
+    $sql6 = <<<SQL
+CREATE table course_members
 (
   user_id    INTEGER,
   course_id  INTEGER,
@@ -32,19 +44,21 @@ CREATE table IF NOT EXISTS  course_members
 )
 SQL;
 
-    try {
-        if (!$mysqli->query($sql1)) {
-            throw new Exception($mysqli->error);
+    $queries = [$sql1, $sql2, $sql3, $sql4, $sql5, $sql6];
+
+    foreach ($queries as $query) {
+
+        try {
+
+            if (!$mysqli->query($query)) {
+                throw new Exception($mysqli->error);
+            }
+
+        } catch (Exception $e) {
+            echo $e->getMessage() . "\n";
+            $result = false;
         }
-        if (!$mysqli->query($sql2)) {
-            throw new Exception($mysqli->error);
-        }
-        if (!$mysqli->query($sql3)) {
-            throw new Exception($mysqli->error);
-        }
-    } catch (Exception $e) {
-        echo $e->getMessage() . "\n";
-        $result = false;
+
     }
 
     return $result;
