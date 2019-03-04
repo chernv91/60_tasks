@@ -23,7 +23,6 @@ function cd(string $cur_dir, string $path): string
 
         }
 
-
         $result = implode('/', $arr2);
     }
 
