@@ -13,12 +13,17 @@ function cd(string $cur_dir, string $path): string
 
             if ($value === '..') {
                 array_pop($arr2);
+                array_shift($arr);
+            } elseif ($value === '.') {
+                array_shift($arr);
+            } else {
+                $first = array_shift($arr);
+                $arr2[] = $first;
             }
 
         }
 
-        $last = array_pop($arr);
-        $arr2[] = $last;
+
         $result = implode('/', $arr2);
     }
 
